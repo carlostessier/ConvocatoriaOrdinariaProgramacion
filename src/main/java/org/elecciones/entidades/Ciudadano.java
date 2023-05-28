@@ -1,22 +1,27 @@
 package org.elecciones.entidades;
+import org.elecciones.interfaces.ValidarDNI;
 
-public class Ciudadano {
+public class Ciudadano implements ValidarDNI{
 
     protected String nombre;
     protected String dni;
     private Sobre sobre;
-
     public Ciudadano() {
         this("","");
     }
 
+    public Ciudadano(String nombre, String dni, Sobre sobre) {
+        setNombre(nombre);
+        setDni(dni);
+        this.sobre = sobre;
+    }
     public Ciudadano(String nombre, String dni) {
         setNombre(nombre);
         setDni(dni);
     }
 
     public Ciudadano(Ciudadano copia) {
-        this(copia.getNombre(), copia.getDni());
+        this(copia.getNombre(), copia.getDni(), copia.getSobre());
     }
 
     public String getNombre() {
@@ -53,6 +58,7 @@ public class Ciudadano {
             this.dni = "";
     }
 
+    @Override
     public boolean validarDNI(String dni) {
         // Comprobar si la longitud es correcta
         if (dni.length() != 9) {

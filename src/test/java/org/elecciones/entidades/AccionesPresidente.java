@@ -36,11 +36,11 @@ class AccionesPresidente {
         Ciudadano vocal3 = new Ciudadano("Vocal Lola", "79915253M");
 
         try {
-            mesaElectoral.agnadirVocal(vocal1);
-            mesaElectoral.agnadirVocal(vocal2);
-            mesaElectoral.agnadirVocal(vocal3);
+            mesaElectoral.agnadirMiembroMesa(vocal1);
+            mesaElectoral.agnadirMiembroMesa(vocal2);
+            mesaElectoral.agnadirMiembroMesa(vocal3);
         } catch (ExceptionElementoRepetido e) {
-
+            System.err.println(e.getMessage());
         }
 
         mesaElectoral.agnadirPresidente(presidente);

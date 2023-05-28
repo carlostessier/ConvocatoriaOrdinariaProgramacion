@@ -13,7 +13,7 @@ public class MesaElectoral implements AccionesMesaElectoral, FicheroCiudadanos {
     final static int NUM_COMPONENTES = 5;
 
     private String direccion;
-    private Ciudadano componentes[];
+    private Ciudadano [] componentes;
     private Urna urna;
     private List<Ciudadano> censoElectoral;
     private List<Ciudadano> ciudadanosQueHanVotado;
@@ -57,33 +57,25 @@ public class MesaElectoral implements AccionesMesaElectoral, FicheroCiudadanos {
         return componentes;
     }
 
-    public void setComponentes(Ciudadano[] componentes) {
-        this.componentes = componentes;
-    }
+
 
     public Urna getUrna() {
         return urna;
     }
 
-    public void setUrna(Urna urna) {
-        this.urna = urna;
-    }
+
 
     public List<Ciudadano> getCensoElectoral() {
         return censoElectoral;
     }
 
-    public void setCensoElectoral(List<Ciudadano> censoElectoral) {
-        this.censoElectoral = censoElectoral;
-    }
+
 
     public List<Ciudadano> getCiudadanosQueHanVotado() {
         return ciudadanosQueHanVotado;
     }
 
-    public void setCiudadanosQueHanVotado(List<Ciudadano> ciudadanosQueHanVotado) {
-        this.ciudadanosQueHanVotado = ciudadanosQueHanVotado;
-    }
+
 
     @Override
     public boolean agnadirPresidente(Ciudadano ciudadano) {
@@ -101,7 +93,7 @@ public class MesaElectoral implements AccionesMesaElectoral, FicheroCiudadanos {
 
 
     @Override
-    public boolean agnadirVocal(Ciudadano ciudadano) throws ExceptionElementoRepetido {
+    public boolean agnadirMiembroMesa(Ciudadano ciudadano) throws ExceptionElementoRepetido {
         int posicion = buscarComponente(ciudadano);
         if(posicion == -1) {
             int hueco = buscarComponente(new Ciudadano());
@@ -158,7 +150,6 @@ public class MesaElectoral implements AccionesMesaElectoral, FicheroCiudadanos {
     @Override
     public void guardarCiudadanos(String nombreFichero, List<Ciudadano> ciudadanos) {
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(nombreFichero))){
-            String linea;
             for(Ciudadano ciudadano: ciudadanos) {
                 bw.write(ciudadano.toString());
                 bw.newLine();

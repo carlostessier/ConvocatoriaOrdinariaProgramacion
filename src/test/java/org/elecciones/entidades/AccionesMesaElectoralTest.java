@@ -44,7 +44,7 @@ class AccionesMesaElectoralTest {
     void testAgnadirVocal() {
         for(int i = 0; i < MesaElectoral.NUM_COMPONENTES; i++) {
             final int index = i;
-            assertDoesNotThrow(() -> assertTrue(mesaElectoral.agnadirVocal(ciudadanos.get(index))));
+            assertDoesNotThrow(() -> assertTrue(mesaElectoral.agnadirMiembroMesa(ciudadanos.get(index))));
         }
 
     }
@@ -53,10 +53,10 @@ class AccionesMesaElectoralTest {
     void testAgnadirVocalMesaLLena() {
         for(int i = 0; i < MesaElectoral.NUM_COMPONENTES; i++) {
             final int index = i;
-            assertDoesNotThrow(() -> mesaElectoral.agnadirVocal(ciudadanos.get(index)));
+            assertDoesNotThrow(() -> mesaElectoral.agnadirMiembroMesa(ciudadanos.get(index)));
         }
         Ciudadano ciudadano = new Ciudadano("Test Name", "06982976S");
-        assertDoesNotThrow(() -> assertFalse(mesaElectoral.agnadirVocal(ciudadano)));
+        assertDoesNotThrow(() -> assertFalse(mesaElectoral.agnadirMiembroMesa(ciudadano)));
 
 
     }
@@ -64,11 +64,11 @@ class AccionesMesaElectoralTest {
     @Test
     void testAgnadirVocalRepetido() {
 
-        assertDoesNotThrow(() -> mesaElectoral.agnadirVocal(ciudadanos.get(0)));
-        assertDoesNotThrow(() -> mesaElectoral.agnadirVocal(ciudadanos.get(1)));
-        assertDoesNotThrow(() -> mesaElectoral.agnadirVocal(ciudadanos.get(2)));
+        assertDoesNotThrow(() -> mesaElectoral.agnadirMiembroMesa(ciudadanos.get(0)));
+        assertDoesNotThrow(() -> mesaElectoral.agnadirMiembroMesa(ciudadanos.get(1)));
+        assertDoesNotThrow(() -> mesaElectoral.agnadirMiembroMesa(ciudadanos.get(2)));
 
-        assertThrows(ExceptionElementoRepetido.class, () -> mesaElectoral.agnadirVocal(ciudadanos.get(2)));
+        assertThrows(ExceptionElementoRepetido.class, () -> mesaElectoral.agnadirMiembroMesa(ciudadanos.get(2)));
 
     }
 
@@ -76,7 +76,7 @@ class AccionesMesaElectoralTest {
     void testBuscarPresidente() {
         for (int i = 0; i < MesaElectoral.NUM_COMPONENTES - 1; i++) {
             try {
-                assertTrue(mesaElectoral.agnadirVocal(ciudadanos.get(i)));
+                assertTrue(mesaElectoral.agnadirMiembroMesa(ciudadanos.get(i)));
             } catch (ExceptionElementoRepetido e) {
                 System.err.println("Error al añadir vocal ");
             }
@@ -90,7 +90,7 @@ class AccionesMesaElectoralTest {
     void testBuscarComponente() {
         for(int i = 0; i < MesaElectoral.NUM_COMPONENTES; i++) {
             final int index = i;
-            assertDoesNotThrow(() -> assertTrue(mesaElectoral.agnadirVocal(ciudadanos.get(index))));
+            assertDoesNotThrow(() -> assertTrue(mesaElectoral.agnadirMiembroMesa(ciudadanos.get(index))));
         }
         Ciudadano ciudadano = new Ciudadano("Ciudadano Name", "71234773R");
 
